@@ -1,10 +1,6 @@
 package ndev;
 
 public class CDI {
-<<<<<<< HEAD
-
-}//end of CDI class
-=======
 	private String[] states;
 	private String topic;
 	private String dataType;
@@ -69,4 +65,3 @@ public class CDI {
 		return danger;
 	}
 }
->>>>>>> f17f7975d9035c2ef0555bcbdd86dc650bfb5cea
