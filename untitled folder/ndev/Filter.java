@@ -18,16 +18,12 @@ public class Filter {
 	}
 	
 	public ArrayList<CDI> filterState(ArrayList<CDI> cdis, String state){
-		int first = 0;
-		int last = 0;
-		
+		ArrayList<CDI> filteredStates = new ArrayList<CDI>();
 		for (int i = 0; i < cdis.length(); i++){
-			if (cdis[i+1] == state)
-				first = cdis[i];
-			if (cdis[i-1] == state && cdis[i+1] != state)
-				last = cdis[i];
+			if (cdis[i] == state)
+				filteredStates.add(cdis[i]);
 		}
-		ArrayList<CDI> filteredStates = cdis.subArray(cdis[first], cdis[last]);
+		
 		return filteredStates;
 
 	}
