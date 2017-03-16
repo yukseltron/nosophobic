@@ -4,6 +4,7 @@ import java.util.ArrayList;
 public class Filter {
 	
 	public ArrayList<CDI> filterDisease(ArrayList<CDI> cdis, String disease){
+		cdis = DataCollection.getList();
 		int first = 0;
 		int last = 0;
 		
