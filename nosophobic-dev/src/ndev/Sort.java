@@ -6,6 +6,13 @@ package ndev;
  *	guarenteed to have O(NlogN) sorting time.
  */
 public class Sort {
+	//main is used for testing
+	public static void main (String [] args){
+		
+	}//end of main
+	
+	
+	
 	/**
 	 * aux is a CDI array that will store the temp array needed by merge sort
 	 */
@@ -31,7 +38,7 @@ public class Sort {
 			sortByState(myData, 0, myData.length);
 		else if (sortBy == 'd')
 			sortByDisease(myData, 0, myData.length);
-	}
+	}//end of sortData
 	
 	/**
 	 * Sorts the data by disease, alphabetically (lexigraphically)
