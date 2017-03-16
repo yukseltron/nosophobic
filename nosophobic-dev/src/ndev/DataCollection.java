@@ -17,7 +17,7 @@ public class DataCollection {
 	    	String line = "";
 	    	while ((line = br.readLine()) != null) {
 	    		String[] data = line.split(",");
-	    		CDI cdi = new CDI(data[3], data[5], data[8], (float) 9.5, (float) 9.5, (float) 9.5, (float) 9.5, (float) 9.5);
+	    		CDI cdi = new CDI(Integer.parseInt(data[0]), data[3], data[5], data[8], (float) 9.5, (float) 9.5, (float) 9.5, (float) 9.5, (float) 9.5);
 	    		cdis.add(cdi);
 	    	}
 	    	br.close();

@@ -4,6 +4,7 @@ package ndev;
  */
 
 public class CDI {
+	private int year;
 	private String state;
 	private String topic;
 	private String dataType;
@@ -14,7 +15,8 @@ public class CDI {
 	private float la;
 	private float danger;
 	
-	CDI (String state, String topic, String dataType, float valueAv, float valuueHc, float valueLc, float lo, float la) {
+	CDI (int year, String state, String topic, String dataType, float valueAv, float valueHc, float valueLc, float lo, float la) {
+		this.year = year;
 		this.state = state;
 		this.topic = topic;
 		this.dataType = dataType;
@@ -27,9 +29,16 @@ public class CDI {
 	}
 	
 	/**
-	 * @return the states
+	 * @return the year
 	 */
-	public String getStates() {
+	public String getYear() {
+		return state;
+	}
+	
+	/**
+	 * @return the state
+	 */
+	public String getState() {
 		return state;
 	}
 	/**
@@ -86,6 +95,6 @@ public class CDI {
 	}
 	
 	public String toString() {
-		return state + ", " + topic + ", " + dataType + ", " + valueAv + ", " + valueHc + ", " + valueLc + ", " + lo + ", " + la;
+		return year + ", " + state + ", " + topic + ", " + dataType + ", " + valueAv + ", " + valueHc + ", " + valueLc + ", " + lo + ", " + la;
 	}
 }
