@@ -1,7 +1,10 @@
 package ndev;
+/**
+ *@author Hamid Yuksel
+ */
 
 public class CDI {
-	private String[] states;
+	private String state;
 	private String topic;
 	private String dataType;
 	private float valueAv;
@@ -10,11 +13,24 @@ public class CDI {
 	private float lo;
 	private float la;
 	private float danger;
+	
+	CDI (String state, String topic, String dataType, float valueAv, float valuueHc, float valueLc, float lo, float la) {
+		this.state = state;
+		this.topic = topic;
+		this.dataType = dataType;
+		this.valueAv = valueAv;
+		this.valueHc = valueHc;
+		this.valueLc = valueLc;
+		this.lo = lo;
+		this.la = la;
+		findDanger();
+	}
+	
 	/**
 	 * @return the states
 	 */
-	public String[] getStates() {
-		return states;
+	public String getStates() {
+		return state;
 	}
 	/**
 	 * @return the topic
@@ -63,5 +79,13 @@ public class CDI {
 	 */
 	public float getDanger() {
 		return danger;
+	}
+	
+	public void findDanger() {
+		//IMPLEMENT
+	}
+	
+	public String toString() {
+		return state + ", " + topic + ", " + dataType + ", " + valueAv + ", " + valueHc + ", " + valueLc + ", " + lo + ", " + la;
 	}
 }
