@@ -7,10 +7,9 @@ package ndev;
  */
 public class Sort {
 	/**
-	 * sortedData is a Comparable array that will store the sorted array
+	 * aux is a CDI array that will store the temp array needed by merge sort
 	 */
-	private static Comparable[] sortedData;
-	private static Comparable[] aux;
+	private static CDI[] aux;
 	
 	/**
 	 * mergeSort takes a Comparable[] array containing the CDI's and sorts
@@ -27,62 +26,84 @@ public class Sort {
 	 * @param myData - an array containing the data we want to sort
 	 * @param sortBy - a char indicating how we want to sort the data
 	 */
-	public static void sortData(Comparable[] myData, char sortBy){
+	public static void sortData(CDI[] myData, char sortBy){
 		if (sortBy == 's')
-			System.out.println("Sorting by state");
+			sortByState(myData, 0, myData.length);
 		else if (sortBy == 'd')
-			System.out.println("Sorting by disease");
+			sortByDisease(myData, 0, myData.length);
 	}
 	
 	/**
 	 * Sorts the data by disease, alphabetically (lexigraphically)
 	 * @param myData - Comparable array holding the data needed to be sorted
 	 */
-	private static void byState(Comparable[] myData, int lo, int hi){
-	}//end of byState
-	
-	/**
-	 * Sorts the data by disease, alphabetically (lexigraphically)
-	 * @param myData - Comparable array holding the data needed to be sorted
-	 */
-	private static void byDisease(Comparable[] myData, int lo, int hi){
-	}//end of byDisease
-	
-	/**
-	 * used to perform a merge sort on a given array
-	 * @param x - the input array containing times of jobs that need to be sorted.
-	 * @param lo - start of the array
-	 * @param hi - end of the array
-	 */
-	private static void mergeSort(Comparable[] x, int lo, int hi) {
+	private static void sortByState(CDI[] myData, int lo, int hi){
 		if (hi <= lo)
 			return;
 		int mid = lo + (hi - lo) / 2;
-		mergeSort(x, lo, mid);
-		mergeSort(x, mid + 1, hi);
-		merge(x, lo, mid, hi);
-	}//end of mergeSort
+		sortByState(myData, lo, mid);
+		sortByState(myData, mid + 1, hi);
+		byState(myData, lo, mid, hi);
+	}//end of byState
 	
 	/**
 	 * used in the merge sort to merge the two sub-arrays.
-	 * @param x - the input array containing times of jobs that need to be sorted.
+	 * @param myData - the input array containing times of jobs that need to be sorted.
 	 * @param lo - lowest end of the first sub-array.
 	 * @param mid - middle of the array; mid is the end of the first sub-array, mid+1 is the start of the second sub-array.
 	 * @param hi - end of the second sub-array.
 	 */
-	public static void merge(Comparable[] x, int lo, int mid, int hi) {
+	public static void byState(CDI[] myData, int lo, int mid, int hi) {
 		int i = lo, j = mid + 1;
 		for (int k = lo; k <= hi; k++)
-			aux[k] = x[k];
+			aux[k] = (CDI) myData[k];
 		for (int k = lo; k <= hi; k++)
 			if (i > mid)
-				x[k] = aux[j++];
+				myData[k] = aux[j++];
 			else if (j > hi)
-				x[k] = aux[i++];
-			else if (lesserString(aux[j], aux[i]))
-				x[k] = aux[j++];
+				myData[k] = aux[i++];
+			else if (lesserString(aux[j].getTopic(), aux[i].getTopic())) //CORRECT THIS
+				myData[k] = aux[j++];
 			else
-				x[k] = aux[i++];
+				myData[k] = aux[i++];
+	}//end of merge
+	
+	
+	/**
+	 * used to perform a merge sort on a given array
+	 * @param myData - the input array containing times of jobs that need to be sorted.
+	 * @param lo - start of the array
+	 * @param hi - end of the array
+	 */
+	private static void sortByDisease(CDI[] myData, int lo, int hi) {
+		if (hi <= lo)
+			return;
+		int mid = lo + (hi - lo) / 2;
+		sortByDisease(myData, lo, mid);
+		sortByDisease(myData, mid + 1, hi);
+		byDisease(myData, lo, mid, hi);
+	}//end of mergeSort
+	
+	/**
+	 * used in the merge sort to merge the two sub-arrays.
+	 * @param myData - the input array containing times of jobs that need to be sorted.
+	 * @param lo - lowest end of the first sub-array.
+	 * @param mid - middle of the array; mid is the end of the first sub-array, mid+1 is the start of the second sub-array.
+	 * @param hi - end of the second sub-array.
+	 */
+	public static void byDisease(CDI[] myData, int lo, int mid, int hi) {
+		int i = lo, j = mid + 1;
+		for (int k = lo; k <= hi; k++)
+			aux[k] = (CDI) myData[k];
+		for (int k = lo; k <= hi; k++)
+			if (i > mid)
+				myData[k] = aux[j++];
+			else if (j > hi)
+				myData[k] = aux[i++];
+			else if (lesserString(aux[j].getTopic(), aux[i].getTopic()))
+				myData[k] = aux[j++];
+			else
+				myData[k] = aux[i++];
 	}//end of merge
 	
 	/**
@@ -94,8 +115,8 @@ public class Sort {
 	 * otherwise true, indicating current is out of place
 	 */
 	//modify this so that it takes a string
-	private static boolean lesserString(Comparable current, Comparable next){
-		int comparisonResult = current.compareTo(next);//current.compareToIgnoreCase(next);
+	private static boolean lesserString(String current, String next){
+		int comparisonResult = current.compareToIgnoreCase(next);
 		if (comparisonResult < 0)
 			return false;
 		else if (comparisonResult == 0)
