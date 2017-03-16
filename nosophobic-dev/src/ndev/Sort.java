@@ -5,14 +5,7 @@ package ndev;
  *	and the frequency of the disease. Uses a mergesort since it is
  *	guarenteed to have O(NlogN) sorting time.
  */
-public class Sort {
-	//main is used for testing
-	public static void main (String [] args){
-		
-	}//end of main
-	
-	
-	
+public class Sort {	
 	/**
 	 * aux is a CDI array that will store the temp array needed by merge sort
 	 */
