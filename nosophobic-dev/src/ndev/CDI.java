@@ -1,7 +1,6 @@
 package ndev;
 /**
  *@author Hamid Yuksel
- *Supercali
  */
 
 public class CDI {
