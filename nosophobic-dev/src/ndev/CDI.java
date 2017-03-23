@@ -1,5 +1,4 @@
 package ndev;
-
 /**
  *@author Hamid Yuksel
  */
