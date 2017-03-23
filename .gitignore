@@ -1,3 +1,2 @@
-.DS_Store
-.classpath
-.project
+*
+!nosophobic-dev/src/ndev
