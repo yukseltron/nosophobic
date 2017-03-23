@@ -17,16 +17,12 @@ public class Filter {
 	 */
 	public ArrayList<CDI> filterDisease(ArrayList<CDI> cdis, String disease) throws Exception{
 		cdis = DataCollection.getList();
-		int first = 0;
-		int last = 0;
+		ArrayList<CDI> filteredCdis = new ArrayList<CDI>();
 
 		for (int i = 0; i < cdis.size(); i++){
-			if (cdis.get(i+1).getTopic() == disease)
-				first = i;
-			if (cdis.get(i-1).getTopic() == disease && cdis.get(i+1).getTopic() != disease)
-				last = i;
+			if (cdis.get(i).getTopic() == disease)
+				filteredCdis.add(cdis.get(i));
 		}
-		ArrayList<CDI> filteredCdis = new ArrayList<CDI>(cdis.subList(first, last + 1));
 		return filteredCdis;
 	}
 	
@@ -40,11 +36,11 @@ public class Filter {
 	public ArrayList<CDI> filterState(ArrayList<CDI> cdis, String state) throws Exception{
 		cdis = DataCollection.getList();
 		ArrayList<CDI> filteredStates = new ArrayList<CDI>();
+		
 		for (int i = 0; i < cdis.size(); i++){
 			if (cdis.get(i).getState() == state)
 				filteredStates.add(cdis.get(i));
 		}
-		
 		return filteredStates;
 
 	}
