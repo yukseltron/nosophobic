@@ -36,11 +36,11 @@ public class Filter {
 	public ArrayList<CDI> filterState(ArrayList<CDI> cdis, String state) throws Exception{
 		cdis = DataCollection.getList();
 		ArrayList<CDI> filteredStates = new ArrayList<CDI>();
+		
 		for (int i = 0; i < cdis.size(); i++){
 			if (cdis.get(i).getState() == state)
 				filteredStates.add(cdis.get(i));
 		}
-		
 		return filteredStates;
 
 	}
