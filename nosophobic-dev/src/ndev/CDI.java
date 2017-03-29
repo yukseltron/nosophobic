@@ -31,8 +31,8 @@ public class CDI {
 	/**
 	 * @return the year
 	 */
-	public String getYear() {
-		return state;
+	public int getYear() {
+		return year;
 	}
 	
 	/**

@@ -70,6 +70,8 @@ public class Sort {
 			return (current.getTopic().compareToIgnoreCase(next.getTopic())<0);
 		else if (sortBy.equalsIgnoreCase("state"))
 			return (current.getState().compareToIgnoreCase(next.getState()) < 0);
+		else if (sortBy.equalsIgnoreCase("year"))
+			return (current.getYear() < next.getYear());
 		else 
 			return (current.getDanger() < next.getDanger());
 	}// end of lessBy method
