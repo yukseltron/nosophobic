@@ -17,13 +17,13 @@ public class DataCollection {
 	    	String line = "";
 	    	while ((line = br.readLine()) != null) {
 	    		String[] data = line.split(",");//  year,      state,   topic, dataType, valueAv, valueLc,  valueHc, lo, la.
-	    		data[12] = data[12].replaceAll("[^0-9\\d*$]","");
+	    		data[12] = data[12].replaceAll("[^0-9\\.]","");
 	    		data[15] = data[15].replaceAll("[^0-9]","");
-	    		data[16] = data[16].replaceAll("[^0-9]","");
-	    		data[23] = data[23].replaceAll("[^0-9]","");
-	    		data[24] = data[24].replaceAll("[^0-9]","");
+	    		data[16] = data[16].replaceAll("[^0-9\\.]","");
+	    		data[23] = data[23].replaceAll("[^0-9\\.\\-]","");
+	    		data[24] = data[24].replaceAll("[^0-9\\.\\-]","");
 	    		
-	    		System.out.println(counter++ + ":"+data[12] + " " +data[12].isEmpty());
+	    		System.out.println(counter++ + ":" + data[23] + ": " + data[24]);
 	    		CDI cdi = new CDI(Integer.parseInt(data[0]), data[3], data[5], data[8], //year, state, topic, dataType
 	    				Float.parseFloat(data[12].isEmpty() ? "0" : data[12]), //valueAv
 	    				Float.parseFloat(data[15].isEmpty() ? "0" : data[15]), //valueLc
