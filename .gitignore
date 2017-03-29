@@ -1,1 +1,2 @@
-.DS_Store
+*
+!nosophobic-dev/src/ndev
