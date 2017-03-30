@@ -10,13 +10,12 @@ public class Filter {
 	
 	/**
 	 * 
-	 * @param cdis
+	 * @param cdis List of chronic disease indicators
 	 * @param disease
 	 * @return Returns a filtered list of diseases.
 	 * @throws Exception
 	 */
-	public ArrayList<CDI> filterDisease(ArrayList<CDI> cdis, String disease) throws Exception{
-		cdis = DataCollection.getList();
+	public static ArrayList<CDI> filterDisease(ArrayList<CDI> cdis, String disease) throws Exception{
 		ArrayList<CDI> filteredCdis = new ArrayList<CDI>();
 
 		for (int i = 0; i < cdis.size(); i++){
@@ -33,8 +32,7 @@ public class Filter {
 	 * @return Returns a list of filtered states
 	 * @throws Exception 
 	 */
-	public ArrayList<CDI> filterState(ArrayList<CDI> cdis, String state) throws Exception{
-		cdis = DataCollection.getList();
+	public static ArrayList<CDI> filterState(ArrayList<CDI> cdis, String state) throws Exception{
 		ArrayList<CDI> filteredStates = new ArrayList<CDI>();
 		
 		for (int i = 0; i < cdis.size(); i++){
@@ -44,6 +42,5 @@ public class Filter {
 		return filteredStates;
 
 	}
-	
 
 }
