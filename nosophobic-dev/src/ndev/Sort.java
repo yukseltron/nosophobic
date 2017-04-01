@@ -13,7 +13,7 @@ public class Sort {
 	 */
 	public static void sort(CDI[] data, String sortBy) {
 		sort(data, 0, data.length - 1, sortBy);
-	}
+	}//end of sort
 
 	/**
 	 * Used to sort the data by whatever is specified by sortBy
@@ -28,7 +28,7 @@ public class Sort {
 		int j = partition(data, lo, hi, sortBy); // Partition (see page 291).
 		sort(data, lo, j - 1, sortBy); // Sort left part data[lo .. j-1].
 		sort(data, j + 1, hi, sortBy); // Sort right part data[j+1 .. hi].
-	}
+	}//end of sort
 
 	/**
 	 * Performs a partition of a given array
@@ -55,7 +55,7 @@ public class Sort {
 		}
 		swap(data, lo, j); // Put v = data[j] into position
 		return j;
-	}
+	}//end of partition
 	
 	/**
 	 * Compares two values and output boolean representing which is lower than the other.
@@ -95,5 +95,28 @@ public class Sort {
 	public static void toString(CDI[] data){
 		for (int i = 0; i < data.length; i++)
 			System.out.println(data[i].getTopic() + " | " + data[i].getState());
-	}
+	}//end of toString
+	
+	/**
+	 * Used to check if the data is sorted correctly by a given sorting criteria
+	 * @param data - the data we want to sort
+	 * @param sortBy - String representing how the data should be sorted (disease, state, danger (default sort type))
+	 * @return boolean value indicating if the data was sorted correctly or not (true/false, respectively)
+	 */
+	public static boolean isSorted(CDI[] data, String sortBy){
+		for (int i = 0; i < data.length; i++)
+			if (sortBy.equalsIgnoreCase("disease"))
+				if (!(data[i-1].getTopic().compareToIgnoreCase(data[i].getTopic())<0))
+					return false;
+			else if (sortBy.equalsIgnoreCase("state"))
+				if (!(data[i-1].getState().compareToIgnoreCase(data[i].getState())<0))
+					return false;
+			else if (sortBy.equalsIgnoreCase("year"))
+				if (!(data[i-1].getYear()<data[i].getYear()))
+					return false;
+			else
+				if (!(data[i-1].getDanger() < data[i].getDanger()))
+					return false;
+		return true;
+	}//end of isSorted
 }// end of Sort class
