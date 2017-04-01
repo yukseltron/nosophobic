@@ -7,7 +7,7 @@ package ndev;
  */
 public class Sort {	
 	/**
-	 * Main sorting function, calls all other functions required to perfomr a quicksort.
+	 * Main sorting function, calls all other functions required to perfomr a quicksort
 	 * @param data - a CDI array to be sorted.
 	 * @param sortBy - string representing how the data is to be sorted (disease, state, danger)
 	 */
