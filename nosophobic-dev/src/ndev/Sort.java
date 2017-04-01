@@ -59,7 +59,7 @@ public class Sort {
 	
 	/**
 	 * Compares two values and output boolean representing which is lower than the other.
-	 * If sortBy is not "disease" or "state", it automatically sorts by danger
+	 * If sortBy is not "disease" or "state", it automatically sorts by danger.
 	 * @param current - the current CDI being compared.
 	 * @param next - the next CDI being compared.
 	 * @param sortBy - String representing how the data should be sorted (disease, state, danger (default sort type))
