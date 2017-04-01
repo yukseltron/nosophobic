@@ -15,14 +15,14 @@ public class CDI {
 	private float la;
 	private float danger;
 	
-	CDI (int year, String state, String topic, String dataType, float valueAv, float valueHc, float valueLc, float lo, float la) {
+	CDI (int year, String state, String topic, String dataType, float valueAv, float valueLc, float valueHc, float lo, float la) {
 		this.year = year;
 		this.state = state;
 		this.topic = topic;
 		this.dataType = dataType;
 		this.valueAv = valueAv;
-		this.valueHc = valueHc;
 		this.valueLc = valueLc;
+		this.valueHc = valueHc;
 		this.lo = lo;
 		this.la = la;
 		findDanger();
