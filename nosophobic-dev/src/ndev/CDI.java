@@ -4,6 +4,7 @@ package ndev;
  */
 
 public class CDI {
+
 	private int year;
 	private String state;
 	private String topic;
@@ -15,7 +16,19 @@ public class CDI {
 	private float la;
 	private float danger;
 	
-	CDI (int year, String state, String topic, String dataType, float valueAv, float valueLc, float valueHc, float lo, float la) {
+	/**
+	 * 
+	 * @param year The year the data was collected
+	 * @param state The state the data is relevant to
+	 * @param topic The chronic disease
+	 * @param dataType The format the data is store in
+	 * @param valueAv The average rating for how prevalent a chronic disease is
+	 * @param valueLc The lowest rating for how prevalent a chronic disease is
+	 * @param valueHc The highest rating for how prevalent a chronic disease is
+	 * @param lo The longitude data
+	 * @param la The latitude data
+	 */
+	public CDI (int year, String state, String topic, String dataType, float valueAv, float valueLc, float valueHc, float la, float lo) {
 		this.year = year;
 		this.state = state;
 		this.topic = topic;
@@ -23,8 +36,8 @@ public class CDI {
 		this.valueAv = valueAv;
 		this.valueLc = valueLc;
 		this.valueHc = valueHc;
-		this.lo = lo;
 		this.la = la;
+		this.lo = lo;
 		findDanger();
 	}
 	
