@@ -65,14 +65,7 @@ public class DataCollection {
 	    		data[lat] = data[lat].replaceAll("[^0-9\\.\\-]","");
 	    		data[lon] = data[lon].replaceAll("[^0-9\\.\\-]","");
 	    		
-	
-	    		
-    			System.out.println(counter++ + " : " + data[year] + " : " + data[state] + " : " 
-    					+ data[topic] + " : " + data[dataType] + " : "
-    					+ data[valueAv] + " : " + data[valueLc] + " : "
-    					+ data[valueHc] + " : "
-    					+ data[lat] + ": " + data[lon] + " : " + data.length + " : ");
-	    		
+	  		
 	    		CDI cdi = new CDI(Integer.parseInt(data[year]), data[state], data[topic], data[dataType], //year, state, topic, dataType
 	    				isFloat(data[valueAv]), //valueAv
 	    				isFloat(data[valueLc]), //valueLc

@@ -7,7 +7,8 @@ import java.util.ArrayList;
  * Searching Algorithm Implementation
  */
 public class Filter {
-	
+	private static ArrayList<CDI> filteredCdis;
+	private static ArrayList<CDI> filteredStates;
 	/**
 	 * Method implements a linear searching algorithm to filter out chronic disease indicators
 	 * based on the string input. The method will return an arraylist containing the CDI's 
@@ -19,7 +20,7 @@ public class Filter {
 	 * @throws Exception
 	 */
 	public static ArrayList<CDI> filterDisease(ArrayList<CDI> cdis, String disease) throws Exception{
-		ArrayList<CDI> filteredCdis = new ArrayList<CDI>();
+		filteredCdis = new ArrayList<CDI>();
 		
 		if (cdis.size() == 0){
 			throw new IllegalStateException();
@@ -43,7 +44,7 @@ public class Filter {
 	 * @throws Exception 
 	 */
 	public static ArrayList<CDI> filterState(ArrayList<CDI> cdis, String state) throws Exception{
-		ArrayList<CDI> filteredStates = new ArrayList<CDI>();
+		filteredStates = new ArrayList<CDI>();
 		
 		if (cdis.size() == 0){
 			throw new IllegalStateException();
@@ -56,5 +57,20 @@ public class Filter {
 		return filteredStates;
 
 	}
-
+	
+	/**
+	 * Getter for list of CDIs by disease
+	 * @return ArrayList<CDI> filtered by disease
+	 */
+	public static ArrayList<CDI> getFilteredDiseases(){
+		return filteredCdis;
+	}
+	
+	/**
+	 * Getter for list of CDIs by state
+	 * @return ArrayList<CDI> filtered by state
+	 */
+	public static ArrayList<CDI> getFilteredStates(){
+		return filteredStates;
+	}
 }
