@@ -1,36 +1,29 @@
+body {
+    font-family: 'Helvetica Neue', 'sans-serif';
+}
+
 .dropbtn {
-    background-color: #4CAF50;
-    color: white;
-    padding: 16px;
-    font-size: 16px;
+    background-color: white;
+    font-weight: lighter;
+    color: black;
+    padding: none;
+    font-size: 200%;
     border: none;
     cursor: pointer;
+    outline: none;
 }
 
-.dropbtn:hover, .dropbtn:focus {
-    background-color: #3e8e41;
-}
-#myInput {
-    border-box: box-sizing;
-    background-image: url('searchicon.png');
-    background-position: 14px 12px;
-    background-repeat: no-repeat;
-    font-size: 16px;
-    padding: 14px 20px 12px 45px;
+.dropbtn:hover {
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
     border: none;
-}
-
-.dropdown {
-    position: relative;
-    display: inline-block;
 }
 
 .dropdown-content {
     display: none;
     position: absolute;
-    background-color: #f6f6f6;
-    min-width: 230px;
-    overflow: auto;
+    background-color: #f9f9f9;
+    min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
 }
@@ -42,6 +35,50 @@
     display: block;
 }
 
-.dropdown a:hover {background-color: #ddd}
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
 
-.show {display:block;}
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: #6D7379;
+    color: white;
+}
+
+.btn-submit {
+    background-color: white;
+    font-weight: lighter;
+    color: black;
+    padding: none;
+    font-size: 200%;
+    border: none;
+    cursor: pointer;
+    outline: none;
+}
+
+.btn-submit:hover {
+    background-color: #292E34;
+    color: white;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+#header {
+    font-size: 500%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+#map {
+  width: 100%;
+  height: 400px;
+  background-color: grey;
+  margin-top: 5%;
+}
+
+#ddlCars {
+
+ }

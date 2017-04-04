@@ -1,127 +1,97 @@
 package ndev;
+
 /**
- * @author Bartosz Kosakowski
- *	This class is used to sort the data based on either state, disease,
- *	and the frequency of the disease. Uses a mergesort since it is
- *	guarenteed to have O(NlogN) sorting time.
+ * This class is used to sort the data based on either state, 
+ * disease, and the frequency of the disease using quicksort.
+ * @author Bartosz Kosakowski 
  */
 public class Sort {	
 	/**
-	 * aux is a CDI array that will store the temp array needed by merge sort
+	 * Main sorting function, calls all other functions required to perfomr a quicksort.
+	 * @param data - a CDI array to be sorted.
+	 * @param sortBy - string representing how the data is to be sorted (disease, state, danger)
 	 */
-	private static CDI[] aux;
-	
-	/**
-	 * mergeSort takes a Comparable[] array containing the CDI's and sorts
-	 * them by state, disease, and frequency of the disease
-	 * @param myData - a Comparable array containing the CDI data
-	 * @param sortBy - a string indicating which field to sort the 
-	 */
-	/*public static void mergeSort(Comparable[] myData, String sortBy){
-		aux = new Comparable[myData.length];
-	}*/
-	
-	/**
-	 * Sorts the data by a given criteria: s == by state, d == by disease
-	 * @param myData - an array containing the data we want to sort
-	 * @param sortBy - a char indicating how we want to sort the data
-	 */
-	public static void sortData(CDI[] myData, char sortBy){
-		if (sortBy == 's')
-			sortByState(myData, 0, myData.length);
-		else if (sortBy == 'd')
-			sortByDisease(myData, 0, myData.length);
-	}//end of sortData
-	
-	/**
-	 * Sorts the data by disease, alphabetically (lexigraphically)
-	 * @param myData - Comparable array holding the data needed to be sorted
-	 */
-	private static void sortByState(CDI[] myData, int lo, int hi){
-		if (hi <= lo)
-			return;
-		int mid = lo + (hi - lo) / 2;
-		sortByState(myData, lo, mid);
-		sortByState(myData, mid + 1, hi);
-		byState(myData, lo, mid, hi);
-	}//end of byState
-	
-	/**
-	 * used in the merge sort to merge the two sub-arrays.
-	 * @param myData - the input array containing times of jobs that need to be sorted.
-	 * @param lo - lowest end of the first sub-array.
-	 * @param mid - middle of the array; mid is the end of the first sub-array, mid+1 is the start of the second sub-array.
-	 * @param hi - end of the second sub-array.
-	 */
-	public static void byState(CDI[] myData, int lo, int mid, int hi) {
-		int i = lo, j = mid + 1;
-		for (int k = lo; k <= hi; k++)
-			aux[k] = (CDI) myData[k];
-		for (int k = lo; k <= hi; k++)
-			if (i > mid)
-				myData[k] = aux[j++];
-			else if (j > hi)
-				myData[k] = aux[i++];
-			else if (lesserString(aux[j].getTopic(), aux[i].getTopic())) //CORRECT THIS
-				myData[k] = aux[j++];
-			else
-				myData[k] = aux[i++];
-	}//end of merge
-	
-	
-	/**
-	 * used to perform a merge sort on a given array
-	 * @param myData - the input array containing times of jobs that need to be sorted.
-	 * @param lo - start of the array
-	 * @param hi - end of the array
-	 */
-	private static void sortByDisease(CDI[] myData, int lo, int hi) {
-		if (hi <= lo)
-			return;
-		int mid = lo + (hi - lo) / 2;
-		sortByDisease(myData, lo, mid);
-		sortByDisease(myData, mid + 1, hi);
-		byDisease(myData, lo, mid, hi);
-	}//end of mergeSort
-	
-	/**
-	 * used in the merge sort to merge the two sub-arrays.
-	 * @param myData - the input array containing times of jobs that need to be sorted.
-	 * @param lo - lowest end of the first sub-array.
-	 * @param mid - middle of the array; mid is the end of the first sub-array, mid+1 is the start of the second sub-array.
-	 * @param hi - end of the second sub-array.
-	 */
-	public static void byDisease(CDI[] myData, int lo, int mid, int hi) {
-		int i = lo, j = mid + 1;
-		for (int k = lo; k <= hi; k++)
-			aux[k] = (CDI) myData[k];
-		for (int k = lo; k <= hi; k++)
-			if (i > mid)
-				myData[k] = aux[j++];
-			else if (j > hi)
-				myData[k] = aux[i++];
-			else if (lesserString(aux[j].getTopic(), aux[i].getTopic()))
-				myData[k] = aux[j++];
-			else
-				myData[k] = aux[i++];
-	}//end of merge
-	
-	/**
-	 * Takes two strings, current and next, and compares them
-	 * @param current - the current string the sort is looking at
-	 * @param next - the string ahead of the current one
-	 * @return Returns a boolean value depending on the comparison result: 
-	 * if current < next, or if they are the same, then false is returned,
-	 * otherwise true, indicating current is out of place
-	 */
-	//modify this so that it takes a string
-	private static boolean lesserString(String current, String next){
-		int comparisonResult = current.compareToIgnoreCase(next);
-		if (comparisonResult < 0)
-			return false;
-		else if (comparisonResult == 0)
-			return false;
-		else
-			return true;
+	public static void sort(CDI[] data, String sortBy) {
+		sort(data, 0, data.length - 1, sortBy);
 	}
-}//end of Sort class
+
+	/**
+	 * Used to sort the data by whatever is specified by sortBy
+	 * @param data - CDI array to be sorted
+	 * @param lo - int value representing the left-most value of the array
+	 * @param hi - int value representing the right-most value of the array
+	 * @param sortBy - String representing how the data should be sorted (disease, state, danger (default sort type))
+	 */
+	private static void sort(CDI[] data, int lo, int hi, String sortBy) {
+		if (hi <= lo)
+			return;
+		int j = partition(data, lo, hi, sortBy); // Partition (see page 291).
+		sort(data, lo, j - 1, sortBy); // Sort left part data[lo .. j-1].
+		sort(data, j + 1, hi, sortBy); // Sort right part data[j+1 .. hi].
+	}
+
+	/**
+	 * Performs a partition of a given array
+	 * @param data - CDI array to be partitioned
+	 * @param lo - low end of the array
+	 * @param hi - high end of the array
+	 * @param sortBy - String representing how the data should be sorted (disease, state, danger (default sort type))
+	 * @return int representing the new pivot value to use in further partitions
+	 */
+	private static int partition(CDI[] data, int lo, int hi, String sortBy) { 
+		int i = lo, j = hi + 1; // left datand right scan indices
+		CDI v = data[lo]; // partitioning item
+		while (true) { // Scan right, scan left, check for scan complete, datand
+						// exchange.
+			while (lessBy(data[++i], v, sortBy))
+				if (i == hi)
+					break;
+			while (lessBy(v, data[--j], sortBy))
+				if (j == lo)
+					break;
+			if (i >= j)
+				break;
+			swap(data, i, j);
+		}
+		swap(data, lo, j); // Put v = data[j] into position
+		return j;
+	}
+	
+	/**
+	 * Compares two values and output boolean representing which is lower than the other.
+	 * If sortBy is not "disease" or "state", it automatically sorts by danger
+	 * @param current - the current CDI being compared.
+	 * @param next - the next CDI being compared.
+	 * @param sortBy - String representing how the data should be sorted (disease, state, danger (default sort type))
+	 * @return boolean value indicating if the value of current is less than the value of next (true if so, else false).
+	 */
+	private static boolean lessBy(CDI current, CDI next, String sortBy) {
+		if (sortBy.equalsIgnoreCase("disease"))
+			return (current.getTopic().compareToIgnoreCase(next.getTopic())<0);
+		else if (sortBy.equalsIgnoreCase("state"))
+			return (current.getState().compareToIgnoreCase(next.getState()) < 0);
+		else 
+			return (current.getDanger() < next.getDanger());
+	}// end of lessBy method
+	
+	/**
+	 * Performs a swap on the values in the array
+	 * @param data - CDI array to be sorted
+	 * @param i - index of first element to be swapped
+	 * @param j - index of second element to be swapped
+	 */
+	private static void swap(CDI[] data, int i, int j) {
+		CDI t = data[i];
+		data[i] = data[j];
+		data[j] = t;
+	}// end of swap method
+	
+	/**
+	 * Prints the data to the console
+	 * @param data - CDI array to be printed
+	 */
+	public static void toString(CDI[] data){
+		for (int i = 0; i < data.length; i++)
+			System.out.println(data[i].getTopic() + " | " + data[i].getState());
+	}
+}// end of Sort class
