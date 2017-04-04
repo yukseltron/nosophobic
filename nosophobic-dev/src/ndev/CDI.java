@@ -104,10 +104,12 @@ public class CDI {
 	}
 	
 	public void findDanger() {
-		//IMPLEMENT
+		if (this.dataType.equals("%")){
+			this.danger = valueAv;
+		}
 	}
 	
 	public String toString() {
-		return year + ", " + state + ", " + topic + ", " + dataType + ", " + valueAv + ", " + valueHc + ", " + valueLc + ", " + lo + ", " + la;
+		return year + ", " + state + ", " + topic + ", " + dataType + ", " + valueAv + ", " + valueHc + ", " + valueLc + ", " + lo + ", " + la + ", " + danger;
 	}
 }
