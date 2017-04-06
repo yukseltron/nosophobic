@@ -12,13 +12,9 @@ import java.util.Scanner;
 public class RunNosophobic {
 	public static void main(String[] args) throws Exception {
 		DataCollection.readFile();
-		
-		
 		Scanner userIn = new Scanner(System.in);
 		System.out.println("Enter either a state, a disease, or both");
 		String userSelection = userIn.nextLine();
-		
-		
 		if (userSelection.toLowerCase().equals("both")){
 			ArrayList<CDI> listNodes;
 			CDI[] arrayNodes;
@@ -38,7 +34,7 @@ public class RunNosophobic {
 			for (int i = arrayNodes.length - 1; i > arrayNodes.length - 11; i--){
 				System.out.printf("Danger: %f	Longitude: %f	Latitude: %f\n", arrayNodes[i].getDanger(), arrayNodes[i].getLo(), arrayNodes[i].getLa());
 			}
-			
 		}
-	}
+	}//end of main method
+	
 }//end of RunNosophobic
