@@ -109,6 +109,9 @@ public class CDI {
 		}
 	}
 	
+	/**
+	 * @return String representation of the data
+	 */
 	public String toString() {
 		return year + ", " + state + ", " + topic + ", " + dataType + ", " + valueAv + ", " + valueHc + ", " + valueLc + ", " + lo + ", " + la + ", " + danger;
 	}
