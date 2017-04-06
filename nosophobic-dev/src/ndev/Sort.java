@@ -43,10 +43,10 @@ public class Sort {
 		CDI v = data[lo]; // partitioning item
 		while (true) { // Scan right, scan left, check for scan complete, datand
 						// exchange.
-			while (lessBy(data[++i], v, sortBy))
+			while (greater(data[++i], v, sortBy))
 				if (i == hi)
 					break;
-			while (lessBy(v, data[--j], sortBy))
+			while (greater(v, data[--j], sortBy))
 				if (j == lo)
 					break;
 			if (i >= j)
@@ -65,16 +65,16 @@ public class Sort {
 	 * @param sortBy - String representing how the data should be sorted (disease, state, danger (default sort type))
 	 * @return boolean value indicating if the value of current is less than the value of next (true if so, else false).
 	 */
-	private static boolean lessBy(CDI current, CDI next, String sortBy) {
-		if (sortBy.equalsIgnoreCase("disease"))
-			return (current.getTopic().compareToIgnoreCase(next.getTopic())<0);
-		else if (sortBy.equalsIgnoreCase("state"))
-			return (current.getState().compareToIgnoreCase(next.getState()) < 0);
-		else if (sortBy.equalsIgnoreCase("year"))
-			return (current.getYear() < next.getYear());
+	private static boolean greater(CDI current, CDI next, String sortBy) {
+		if (sortBy.toLowerCase().contains("disease"))
+			return (current.getTopic().compareToIgnoreCase(next.getTopic()) > 0);
+		else if (sortBy.toLowerCase().contains("state"))
+			return (current.getState().compareToIgnoreCase(next.getState()) > 0);
+		else if (sortBy.toLowerCase().contains("year"))
+			return (current.getYear() > next.getYear());
 		else 
-			return (current.getDanger() < next.getDanger());
-	}// end of lessBy method
+			return (current.getDanger() > next.getDanger());
+	}// end of greater method
 	
 	/**
 	 * Performs a swap on the values in the array
@@ -105,17 +105,17 @@ public class Sort {
 	 */
 	public static boolean isSorted(CDI[] data, String sortBy){
 		for (int i = 0; i < data.length; i++)
-			if (sortBy.equalsIgnoreCase("disease"))
-				if (!(data[i-1].getTopic().compareToIgnoreCase(data[i].getTopic())<0))
+			if (sortBy.toLowerCase().contains("disease"))
+				if (!(data[i-1].getTopic().compareToIgnoreCase(data[i].getTopic())>0))
 					return false;
-			else if (sortBy.equalsIgnoreCase("state"))
-				if (!(data[i-1].getState().compareToIgnoreCase(data[i].getState())<0))
+			else if (sortBy.toLowerCase().contains("state"))
+				if (!(data[i-1].getState().compareToIgnoreCase(data[i].getState())>0))
 					return false;
-			else if (sortBy.equalsIgnoreCase("year"))
-				if (!(data[i-1].getYear()<data[i].getYear()))
+			else if (sortBy.toLowerCase().contains("year"))
+				if (!(data[i-1].getYear()>data[i].getYear()))
 					return false;
 			else
-				if (!(data[i-1].getDanger() < data[i].getDanger()))
+				if (!(data[i-1].getDanger() > data[i].getDanger()))
 					return false;
 		return true;
 	}//end of isSorted
