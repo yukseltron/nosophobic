@@ -104,18 +104,18 @@ public class Sort {
 	 * @return boolean value indicating if the data was sorted correctly or not (true/false, respectively)
 	 */
 	public static boolean isSorted(CDI[] data, String sortBy){
-		for (int i = 0; i < data.length; i++)
-			if (sortBy.toLowerCase().contains("disease"))
-				if (!(data[i-1].getTopic().compareToIgnoreCase(data[i].getTopic())>0))
+		for (int i = 1; i < data.length; i++)
+			if (sortBy.toLowerCase().equals("disease"))
+				if (!(data[i-1].getTopic().compareToIgnoreCase(data[i].getTopic())>=0))
 					return false;
-			else if (sortBy.toLowerCase().contains("state"))
-				if (!(data[i-1].getState().compareToIgnoreCase(data[i].getState())>0))
+			else if (sortBy.toLowerCase().equals("state"))
+				if (!(data[i-1].getState().compareToIgnoreCase(data[i].getState())>=0))
 					return false;
-			else if (sortBy.toLowerCase().contains("year"))
-				if (!(data[i-1].getYear()>data[i].getYear()))
+			else if (sortBy.toLowerCase().equals("year"))
+				if (!(data[i-1].getYear()>=data[i].getYear()))
 					return false;
 			else
-				if (!(data[i-1].getDanger() > data[i].getDanger()))
+				if (!(data[i-1].getDanger() >= data[i].getDanger()))
 					return false;
 		return true;
 	}//end of isSorted
