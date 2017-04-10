@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class DataCollection {
-	private static String file = "data/uscdi.csv";
+	private static String file = "nosophobic-dev/data/uscdi.csv";
     private static BufferedReader br = null;
     private static ArrayList<CDI> cdis = new ArrayList<CDI>();
     private static int counter = 0;

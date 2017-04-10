@@ -18,6 +18,22 @@ public class RunNosophobic {
 		System.out.println("Enter either a state, a disease, or both");
 		String userSelection = userIn.nextLine();
 		
+		if (userSelection.toLowerCase().equals("disease")){
+			System.out.println("Enter a disease: ");
+			String diseaseChosen = userIn.nextLine();
+			ArrayList<CDI> nodes = Filter.filterDisease(DataCollection.getList(), diseaseChosen);
+			//sort the diseases by state, then sum the danger for each state, then return
+			CDI[] arrayNodes = (CDI[]) nodes.toArray();
+			Sort.sort(arrayNodes, "state");
+			
+			
+			
+			
+			
+			
+			
+		}
+		
 		
 		if (userSelection.toLowerCase().equals("both")){
 			ArrayList<CDI> listNodes;
@@ -40,5 +56,14 @@ public class RunNosophobic {
 			}
 			
 		}
+	}
+	
+	public float sumDanger(CDI[] cdiList){
+		float totalDanger = 0;
+		for (CDI i : cdiList){
+			totalDanger += i.getDanger();
+		}
+		return totalDanger;
+		
 	}
 }//end of RunNosophobic
