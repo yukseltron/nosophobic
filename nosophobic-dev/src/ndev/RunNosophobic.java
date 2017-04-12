@@ -2,7 +2,10 @@ package ndev;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Scanner;
+
+import com.sun.javafx.collections.MappingChange.Map;
 
 /**
  * Puts all of the modules together and runs the project.
@@ -13,31 +16,65 @@ import java.util.Scanner;
 public class RunNosophobic {
 	public static void main(String[] args) throws Exception {
 		DataCollection.readFile();
+		
 		Scanner userIn = new Scanner(System.in);
 		System.out.println("Enter either a state, a disease, or both");
 		String userSelection = userIn.nextLine();
 
 		if (userSelection.toLowerCase().equals("both")) {
-			ArrayList<CDI> listNodes;
-			CDI[] arrayNodes;
-			System.out.println("Enter a state: ");
-			String stateChosen = userIn.nextLine();
-			System.out.println("Enter a disease: ");
-			String diseaseChosen = userIn.nextLine();
+			System.out.println("Enter either info or graph");
+			userSelection = userIn.nextLine();
+			
+			if (userSelection.equals("info")){
+				ArrayList<CDI> listNodes;
+				CDI[] arrayNodes;
+				System.out.println("Enter a state: ");
+				String stateChosen = userIn.nextLine();
+				System.out.println("Enter a disease: ");
+				String diseaseChosen = userIn.nextLine();
 
-			listNodes = Filter.filterDisease(Filter.filterState(DataCollection.getList(), stateChosen), diseaseChosen);
-			arrayNodes = new CDI[listNodes.size()];
-			for (int i = 0; i < arrayNodes.length; i++) {
-				arrayNodes[i] = listNodes.get(i);
+				listNodes = Filter.filterDisease(Filter.filterState(DataCollection.getList(), stateChosen), diseaseChosen);
+				arrayNodes = new CDI[listNodes.size()];
+				for (int i = 0; i < arrayNodes.length; i++) {
+					arrayNodes[i] = listNodes.get(i);
+				}
+
+				Sort.sort(arrayNodes, "danger");
+				System.out.println("Top 10 CID's for " + diseaseChosen + " in " + stateChosen);
+				for (int i = arrayNodes.length - 1; i > arrayNodes.length - 11; i--) {
+					System.out.printf("Danger: %f	Longitude: %f	Latitude: %f\n", arrayNodes[i].getDanger(),
+							arrayNodes[i].getLo(), arrayNodes[i].getLa());
+				}
 			}
-
-			Sort.sort(arrayNodes, "danger");
-			System.out.println("Top 10 CID's for " + diseaseChosen + " in " + stateChosen);
-			for (int i = arrayNodes.length - 1; i > arrayNodes.length - 11; i--) {
-				System.out.printf("Danger: %f	Longitude: %f	Latitude: %f\n", arrayNodes[i].getDanger(),
-						arrayNodes[i].getLo(), arrayNodes[i].getLa());
+			
+			else if (userSelection.equals("graph")){
+				
+				System.out.println("Enter a state: ");
+				String stateChosen = userIn.nextLine();
+				System.out.println("Enter a disease: ");
+				String diseaseChosen = userIn.nextLine();
+				
+				System.out.println("Determaining safest path");
+				ArrayList<String> path = new ArrayList<String>();
+				Graph america = new Graph();
+				String state = stateChosen;
+				path.add(state);
+				
+				while (betterEdge(state, diseaseChosen, america, DataCollection.getList()) != state){
+				
+					state = betterEdge(state, diseaseChosen, america, DataCollection.getList());
+					path.add(state);
+					
+					
+				}
+				System.out.println("Outputting path");
+				for (int i = 0; i < path.size(); i++){
+					
+					System.out.println(path.get(i));
+				}
 			}
 		}
+		
 		/**
 		 * if the user enters just by state, then the output will be the CDIs
 		 * with the top three highest total danger levels
@@ -108,7 +145,7 @@ public class RunNosophobic {
 		} // end of "state" branch
 	}// end of main method
 
-	public static float sumDanger(ArrayList<CDI> cdis, String state, String disease) throws Exception {
+	public static float sumDanger(ArrayList<CDI> cdis, String state, String disease) throws Exception{
 		ArrayList<CDI> tempCDIs = Filter.filterState(cdis, state);
 		tempCDIs = Filter.filterDisease(tempCDIs, disease);
 		float sumDanger = 0;
@@ -127,4 +164,27 @@ public class RunNosophobic {
 	 * arrayNodes[i+1].getDanger()); System.out.println("====================");
 	 */
 
-}// end of RunNosophobic
+	public static String betterEdge(String state, String disease, Graph graph, ArrayList<CDI> cdis){
+		float currentVal, cmpVal, minVal;
+		String minState;
+		try{
+			currentVal = sumDanger(cdis, state, disease);
+			minState = state;
+			minVal = currentVal;
+			for (String contigState : graph.getEdges(state)){
+				cmpVal = sumDanger(cdis, contigState, disease);
+				if (cmpVal < minVal){
+					minVal = cmpVal;
+					minState = contigState;
+				}
+			}
+			return minState;
+		} catch (Exception e){
+			e.printStackTrace();
+		}
+		return state;
+	}
+		
+	
+	
+}//end of RunNosophobic.java
