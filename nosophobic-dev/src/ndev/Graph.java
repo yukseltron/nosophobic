@@ -72,7 +72,7 @@ public class Graph {
 		ArrayList<String> connected;
 		
 		try{
-			Scanner input = new Scanner(new File("data\\edges.txt"));
+			Scanner input = new Scanner(new File("data/edges.txt"));
 			while (input.hasNextLine()){
 			connected = new ArrayList<String>();
 			states = input.nextLine().split(",");
