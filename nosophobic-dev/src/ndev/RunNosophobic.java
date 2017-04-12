@@ -5,11 +5,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Scanner;
 
-<<<<<<< HEAD
-import com.sun.corba.se.impl.orbutil.graph.Graph;
-=======
 import com.sun.javafx.collections.MappingChange.Map;
->>>>>>> develop
 
 /**
  * Puts all of the modules together and runs the project.
@@ -70,13 +66,8 @@ public class RunNosophobic {
 		
 		else if (userSelection.equals("graph")){
 			System.out.println("Determaining safest path");
-<<<<<<< HEAD
-			ArrayList<String> path = new ArrayList<String>();
-			Graph america = new Graph();
-=======
 			Graph america = new Graph();
 			ArrayList<String> path = new ArrayList<String>();
->>>>>>> develop
 			String state = stateChosen;
 			path.add(state);
 			
@@ -142,34 +133,18 @@ public class RunNosophobic {
 	
 	private static void doDisease() throws Exception {
 		Scanner userIn = new Scanner(System.in);
-<<<<<<< HEAD
-		ArrayList<CDI> sameDiseaseCDI;
-=======
->>>>>>> develop
 		System.out.println("Enter a disease: ");
 		String diseaseChosen = userIn.nextLine();
 
 		// Filters out the data that isn't associated with the given disease
-<<<<<<< HEAD
-		sameDiseaseCDI = Filter.filterDisease(DataCollection.getList(), diseaseChosen);
-=======
 		ArrayList<CDI> sameDiseaseCDI = Filter.filterDisease(DataCollection.getList(), diseaseChosen);
->>>>>>> develop
 
 		CDI[] sameDiseaseCDIArray = new CDI[sameDiseaseCDI.size()];
 		sameDiseaseCDIArray = sameDiseaseCDI.toArray(sameDiseaseCDIArray);
 		Sort.sort(sameDiseaseCDIArray, "state");
-<<<<<<< HEAD
-		ArrayList<CDI> sortedList = new ArrayList<CDI>(Arrays.asList(sameDiseaseCDIArray));
-		int totalStates = 0;
 
 		// Stores the states and the danger level in a HashMap
 		HashMap<String, String> map = new HashMap<String, String>();
-=======
-
-		// Stores the states and the danger level in a HashMap
-		Map<String, String> map = new HashMap<String, String>();
->>>>>>> develop
 		for (int i = 0; i < sameDiseaseCDIArray.length - 1; i++){
 			if (sameDiseaseCDIArray[i].getState() != sameDiseaseCDIArray[i+1].getState()){
 				float dangerLevel = sumDanger(sameDiseaseCDI, sameDiseaseCDIArray[i].getState(), diseaseChosen);
@@ -177,20 +152,12 @@ public class RunNosophobic {
 			}
 		}
 		
-<<<<<<< HEAD
-		System.out.println("\nThe sum of the CDI's pertaining to the disease " + diseaseChosen + " for each state are: ");
-		System.out.println("(State, Danger level)");
-		
-		for (String name: map.keySet()){
-	        String key =name.toString();
-=======
 		System.out.println(" ");
 		System.out.println("The sum of the CDI's pertaining to the disease " + diseaseChosen + " for each state are: ");
 		System.out.println("(State, Danger level)");
 		
 		for (String name : map.keySet()){
 	        String key = name.toString();
->>>>>>> develop
 	        String value = map.get(name).toString();
 			System.out.println(key + " " + value);
 		}
@@ -231,11 +198,7 @@ public class RunNosophobic {
 		return sumDanger;
 	}
 
-<<<<<<< HEAD
-	public static String betterEdge(String state, String disease, Graph graph, ArrayList<CDI> cdis){
-=======
 	private static String betterEdge(String state, String disease, Graph graph, ArrayList<CDI> cdis){
->>>>>>> develop
 		float currentVal, cmpVal, minVal;
 		String minState;
 		try{
