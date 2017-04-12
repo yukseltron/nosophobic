@@ -143,6 +143,40 @@ public class RunNosophobic {
 			}
 
 		} // end of "state" branch
+		
+		// If user searches by just disease
+		else if (userSelection.toLowerCase().equals("disease")) {
+			ArrayList<CDI> sameDiseaseCDI;
+			System.out.println("Enter a disease: ");
+			String diseaseChosen = userIn.nextLine();
+
+			// Filters out the data that isn't associated with the given disease
+			sameDiseaseCDI = Filter.filterDisease(DataCollection.getList(), diseaseChosen);
+
+			CDI[] sameDiseaseCDIArray = new CDI[sameDiseaseCDI.size()];
+			sameDiseaseCDIArray = sameDiseaseCDI.toArray(sameDiseaseCDIArray);
+			Sort.sort(sameDiseaseCDIArray, "state");
+			ArrayList<CDI> sortedList = new ArrayList<CDI>(Arrays.asList(sameDiseaseCDIArray));
+			int totalStates = 0;
+
+			// Stores the states and the danger level in a HashMap
+			HashMap<String, String> map = new HashMap<String, String>();
+			for (int i = 0; i < sameDiseaseCDIArray.length - 1; i++){
+				if (sameDiseaseCDIArray[i].getState() != sameDiseaseCDIArray[i+1].getState()){
+					float dangerLevel = sumDanger(sameDiseaseCDI, sameDiseaseCDIArray[i].getState(), diseaseChosen);
+					map.put(sameDiseaseCDIArray[i].getState(), String.valueOf(dangerLevel));
+				}
+			}
+			System.out.println(" ");
+			System.out.println("The sum of the CDI's pertaining to the disease " + diseaseChosen + " for each state are: ");
+			System.out.println("(State, Danger level)");
+			for (String name: map.keySet()){
+
+            String key =name.toString();
+            String value = map.get(name).toString();
+			System.out.println(key + " " + value);
+			}
+		} // end of disease branch
 	}// end of main method
 
 	public static float sumDanger(ArrayList<CDI> cdis, String state, String disease) throws Exception{
