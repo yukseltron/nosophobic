@@ -1,2 +1,4 @@
-*
-!nosophobic-dev/src/ndev
+/*
+!.gitignore
+!nosophobic-web/
+!nosophobic-dev/src/ndev/
