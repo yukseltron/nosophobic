@@ -22,7 +22,7 @@ public class RunNosophobic {
 		}
 		/**
 		 * if the user enters just by state, then the output will be the CDIs
-		 * with the top three highest total danger levels
+		 * with the top three highest total danger levelss
 		 */
 		else if (userSelection.toLowerCase().equals("state")) {
 			doState();
