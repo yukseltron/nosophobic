@@ -20,7 +20,6 @@ public class Filter {
 	 */
 	public static ArrayList<CDI> filterDisease(ArrayList<CDI> cdis, String disease) throws Exception{
 		ArrayList<CDI> filteredCdis = new ArrayList<CDI>();
-
 		
 		if (cdis.size() == 0){
 			throw new IllegalStateException();
@@ -46,9 +45,8 @@ public class Filter {
 	 */
 	public static ArrayList<CDI> filterState(ArrayList<CDI> cdis, String state) throws Exception{
 		ArrayList<CDI> filteredStates = new ArrayList<CDI>();
-		Graph america = new Graph();
 		
-		if (america.invalidState(state)){
+		if (cdis.size() == 0){
 			throw new IllegalStateException();
 		}
 		
@@ -61,6 +59,3 @@ public class Filter {
 
 	}
 }
-
-
-	
