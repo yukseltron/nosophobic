@@ -10,7 +10,7 @@ import com.sun.javafx.collections.MappingChange.Map;
 /**
  * Puts all of the modules together and runs the project.
  * 
- * @author Bartosz Kosakowski, Owen Mitchell
+ * @author Bartosz Kosakowski, Owen Mitchell, Anthony, Hamid 
  *
  */
 public class RunNosophobic {
