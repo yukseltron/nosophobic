@@ -144,7 +144,7 @@ public class RunNosophobic {
 		Sort.sort(sameDiseaseCDIArray, "state");
 
 		// Stores the states and the danger level in a HashMap
-		Map<String, String> map = new HashMap<String, String>();
+		HashMap<String, String> map = new HashMap<String, String>();
 		for (int i = 0; i < sameDiseaseCDIArray.length - 1; i++){
 			if (sameDiseaseCDIArray[i].getState() != sameDiseaseCDIArray[i+1].getState()){
 				float dangerLevel = sumDanger(sameDiseaseCDI, sameDiseaseCDIArray[i].getState(), diseaseChosen);
