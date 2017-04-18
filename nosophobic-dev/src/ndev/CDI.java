@@ -44,8 +44,8 @@ public class CDI {
 	/**
 	 * @return the year
 	 */
-	public String getYear() {
-		return state;
+	public int getYear() {
+		return year;
 	}
 	
 	/**
@@ -67,31 +67,31 @@ public class CDI {
 		return dataType;
 	}
 	/**
-	 * @return the valueAv
+	 * @return the value average
 	 */
 	public float getValueAv() {
 		return valueAv;
 	}
 	/**
-	 * @return the valueHc
+	 * @return the value high-count
 	 */
 	public float getValueHc() {
 		return valueHc;
 	}
 	/**
-	 * @return the valueLc
+	 * @return the value low-count
 	 */
 	public float getValueLc() {
 		return valueLc;
 	}
 	/**
-	 * @return the lo
+	 * @return the longitude
 	 */
 	public float getLo() {
 		return lo;
 	}
 	/**
-	 * @return the la
+	 * @return the latitude
 	 */
 	public float getLa() {
 		return la;
@@ -103,11 +103,19 @@ public class CDI {
 		return danger;
 	}
 	
+	/**
+	 * sets the Danger value. ;
+	 */
 	public void findDanger() {
-		//IMPLEMENT
+		if (this.dataType.equals("%")){
+			this.danger = valueAv;
+		}
 	}
 	
+	/**
+	 * @return String representation of the data
+	 */
 	public String toString() {
-		return year + ", " + state + ", " + topic + ", " + dataType + ", " + valueAv + ", " + valueHc + ", " + valueLc + ", " + lo + ", " + la;
+		return year + ", " + state + ", " + topic + ", " + dataType + ", " + valueAv + ", " + valueHc + ", " + valueLc + ", " + lo + ", " + la + ", " + danger;
 	}
 }

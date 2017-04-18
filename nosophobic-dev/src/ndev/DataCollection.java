@@ -6,11 +6,18 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class DataCollection {
+	/**
+	 * String file contains the file location.
+	 * BufferedReader br reads the file.
+	 * ArrayList<CDI> cdis contains all the info read from br.
+	 */
 	private static String file = "data/uscdi.csv";
     private static BufferedReader br = null;
     private static ArrayList<CDI> cdis = new ArrayList<CDI>();
-    private static int counter = 0;
     
+    /**
+     * Reads file and stores into cdis.
+     */
     public static void readFile() {
 	    try {
 	    	br = new BufferedReader(new FileReader(file));
@@ -65,14 +72,7 @@ public class DataCollection {
 	    		data[lat] = data[lat].replaceAll("[^0-9\\.\\-]","");
 	    		data[lon] = data[lon].replaceAll("[^0-9\\.\\-]","");
 	    		
-	
-	    		
-    			System.out.println(counter++ + " : " + data[year] + " : " + data[state] + " : " 
-    					+ data[topic] + " : " + data[dataType] + " : "
-    					+ data[valueAv] + " : " + data[valueLc] + " : "
-    					+ data[valueHc] + " : "
-    					+ data[lat] + ": " + data[lon] + " : " + data.length + " : ");
-	    		
+	  		
 	    		CDI cdi = new CDI(Integer.parseInt(data[year]), data[state], data[topic], data[dataType], //year, state, topic, dataType
 	    				isFloat(data[valueAv]), //valueAv
 	    				isFloat(data[valueLc]), //valueLc
@@ -87,6 +87,11 @@ public class DataCollection {
 	    }
     }
     
+    /**
+     * 
+     * @param s String to check can be converted into a float.
+     * @return True if the String can be cast as a float.
+     */
     public static float isFloat(String s) {
     	try
     	{
@@ -101,6 +106,11 @@ public class DataCollection {
     	return Float.parseFloat(s);
     }
     
+    /**
+     * 
+     * @return returns True if the arrayList of type CDI is empty.
+     * @throws Exception
+     */
     public static ArrayList<CDI> getList() throws Exception {
     	if (cdis.isEmpty())
     		throw new Exception ("IT'S EMPTY!");
