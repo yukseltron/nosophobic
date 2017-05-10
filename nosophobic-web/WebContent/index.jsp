@@ -93,7 +93,7 @@
 		 </form>
 		 <div id="map"></div>
 		<script async defer
-    	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBzsp8urNsDvRxkev_T_MxNs6PPhthBo7w&callback=initMap">
+    	src="https://maps.googleapis.com/maps/api/js?key=?&callback=initMap">
     	</script>
 	</div>
 </body>
